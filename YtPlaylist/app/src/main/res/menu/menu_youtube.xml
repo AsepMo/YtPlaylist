@@ -1,0 +1,26 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+	<item 
+		android:id="@+id/action_menu_browser"
+		android:title="Browser"
+		app:showAsAction="never"/> 
+	<item 
+		android:id="@+id/action_menu_playlist"
+		android:title="Playlist"
+		app:showAsAction="never"/> 
+	<item 
+		android:id="@+id/action_menu_downloader"
+		android:title="Downloader"
+		app:showAsAction="never"/>
+	<item 
+		android:id="@+id/action_menu_history"
+		android:title="History Download"
+		app:showAsAction="never"/>
+	<item 
+		android:id="@+id/action_menu_settings"
+		android:title="Settings"
+		app:showAsAction="never"/>
+	
+
+</menu>

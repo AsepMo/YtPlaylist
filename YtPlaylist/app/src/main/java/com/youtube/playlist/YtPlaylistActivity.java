@@ -1,11 +1,12 @@
 package com.youtube.playlist;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.os.Bundle;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -13,14 +14,21 @@ import android.view.MenuItem;
 import com.youtube.playlist.R;
 import com.youtube.playlist.adapter.YoutubeVideoAdapter;
 import com.youtube.playlist.model.YoutubeVideoModel;
-import com.youtube.playlist.utils.RecyclerViewOnClickListener;
-import com.youtube.playlist.main.YoutubePlayerActivity;
+import com.youtube.playlist.listener.RecyclerViewOnClickListener;
+import com.youtube.playlist.player.YoutubePlayerActivity;
 
 import java.util.ArrayList;
+import com.youtube.playlist.R;
 
 public class YtPlaylistActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
 
+    public static void start(final Context c)
+    {
+        Intent mApplication = new Intent(c, YtPlaylistActivity.class);
+                    c.startActivity(mApplication);
+	}
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,8 +55,8 @@ public class YtPlaylistActivity extends AppCompatActivity {
 		// TODO: Implement this method
 		switch(item.getItemId()){
 			case R.id.action_settings:
-				Intent mYoutube = new Intent(YtPlaylistActivity.this, YoutubeActivity.class);
-				startActivity(mYoutube);
+				//Intent mYoutube = new Intent(YtPlaylistActivity.this, YoutubeActivity.class);
+				//startActivity(mYoutube);
 				break;
 		}
 		return super.onOptionsItemSelected(item);

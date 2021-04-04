@@ -26,7 +26,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.youtube.playlist.YoutubeActivity"
+            android:name="com.youtube.playlist.YtPlaylistStarter"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateAlwaysHidden" >
@@ -42,10 +42,10 @@
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name="com.youtube.playlist.main.YoutubePlayerActivity"
+            android:name="com.youtube.playlist.player.YoutubePlayerActivity"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name="com.youtube.playlist.main.VideoPlayerActivity"
+            android:name="com.youtube.playlist.player.VideoPlayerActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="Video Player"
             android:screenOrientation="landscape" />
