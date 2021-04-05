@@ -7,7 +7,7 @@ import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.support.annotation.Nullable;
 
-import com.youtube.playlist.app.AppController;
+import com.youtube.playlist.PlaylistApplication;
 
 public class WiFiModule {
     private static WiFiModule mInstance;
@@ -24,7 +24,7 @@ public class WiFiModule {
 
     public static WiFiModule getInstance(){
         if (mInstance == null){
-            mInstance = new WiFiModule(AppController.getContext());
+            mInstance = new WiFiModule(PlaylistApplication.getContext());
         }
 
         return mInstance;

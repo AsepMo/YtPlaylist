@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	android:orientation="vertical"
+	android:id="@+id/main_content"
+	android:background="#FFFFFF">
+
+	<RelativeLayout
+		android:id="@+id/container"
+		android:layout_width="match_parent"
+		android:layout_height="0dp"
+		android:layout_weight="1">
+
+		<RelativeLayout
+			android:id="@+id/web_container"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:visibility="visible">
+
+			<android.support.v4.widget.SwipeRefreshLayout
+				android:id="@+id/refresh_layout"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent">
+
+				<com.youtube.playlist.utils.AdvancedWebView
+					android:id="@+id/main_webview"
+					android:layout_width="fill_parent"
+					android:layout_height="fill_parent"
+					android:focusable="true"
+					android:focusableInTouchMode="true"
+					android:scrollbarAlwaysDrawHorizontalTrack="false"
+					android:scrollbarSize="20dp"
+					android:scrollbars="vertical"/>
+
+			</android.support.v4.widget.SwipeRefreshLayout>
+
+			<FrameLayout
+				android:id="@+id/main_progress_bar_container"
+				android:layout_width="match_parent"
+				android:layout_height="4dp"
+				android:layout_alignParentBottom="true"
+				android:background="#FFFFFF">
+
+				<ProgressBar
+					android:id="@+id/main_progress_bar"
+					style="?android:attr/progressBarStyleHorizontal"
+					android:layout_width="match_parent"
+					android:layout_height="100dp"
+					android:layout_gravity="center"
+					android:scaleY="4"/>
+
+			</FrameLayout>
+
+			<android.support.design.widget.FloatingActionButton
+				android:id="@+id/fab_search"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_alignParentBottom="true"
+				android:layout_alignParentEnd="true"
+				android:layout_alignParentRight="true"
+				android:layout_margin="4dp"
+				android:src="@drawable/ic_download"
+				android:tint="#FFFFFF"
+				android:visibility="gone"
+				app:fabSize="normal"
+				app:useCompatPadding="true"/>
+
+		</RelativeLayout>
+
+	</RelativeLayout>
+
+	<android.support.v7.widget.Toolbar
+		android:id="@+id/toolbar"
+		android:layout_width="match_parent"
+		android:layout_height="?attr/actionBarSize"
+		android:background="?colorPrimary"
+		app:theme="?attr/actionBarTheme"
+		app:popupTheme="?attr/actionBarPopupTheme"/>
+</LinearLayout>
+

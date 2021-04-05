@@ -11,13 +11,20 @@ import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormatter;
+import org.joda.time.format.ISODateTimeFormat;
 
 import java.io.File;
 import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.UUID;
 import java.util.List;
 import java.lang.reflect.Method;
+
+import com.youtube.playlist.utils.TimeAgo;
 
 public class Playlist implements Serializable { 
 
@@ -32,7 +39,8 @@ public class Playlist implements Serializable {
     private String mVideoId;
     private String mDescription;
     private String mPublished;
-
+	private String timeAgo;
+	
     private int mYoutubeColor;
     private Date mYoutubeDate;
 
@@ -50,10 +58,6 @@ public class Playlist implements Serializable {
     public static final String YOUTUBEUPDATE= "update";
 
     public static final String IDENTIFIER = "identifier";
-
-    public Playlist(Context context) {
-        this.mContext = context;
-    }
 
     public Playlist(String title, String thumbnail_url, String videoid, String description, String published, boolean update) {
         this.mTitle = title;
@@ -121,10 +125,32 @@ public class Playlist implements Serializable {
     public String getDescription() {
         return mDescription;
     }
-
-    public void setPublished(String mPublished) {
-        this.mPublished = mPublished;
+	
+	public String getTimeAgo() {
+        return timeAgo;
     }
+
+    public void setTimeAgo(String timeAgo) {
+        this.timeAgo = timeAgo;
+    }
+
+    
+    public void setPublished(String mPublished) {
+        try {
+            DateTimeFormatter parser = ISODateTimeFormat.dateTimeParser();
+            DateTime dt = parser.parseDateTime(mPublished);
+
+            long videoSecs = (dt.getMillis())/1000;
+            long nowSecs = (new Date().getTime())/1000;
+            long secs = nowSecs - videoSecs;
+            setTimeAgo(TimeAgo.getTimeAgo(secs));
+        } catch (Exception e) {
+            e.printStackTrace();
+            setTimeAgo("NA");
+        } finally {
+            this.mPublished = mPublished;
+        }   
+	}
 
     public String getPublished() {
         return mPublished;

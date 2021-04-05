@@ -3,15 +3,36 @@
     package="com.youtube.playlist" >
 
 	<!--  internet permission required for loading videos and playing them  -->
+
+    <supports-screens
+        android:anyDensity="true"
+        android:resizeable="true"
+        android:smallScreens="true"
+        android:largeScreens="true"
+        android:normalScreens="true"
+        android:xlargeScreens="true" />
+    <!--
+    Remove permissions that your app doesn't require, asking for authority over unwanted information can cause damage to your reputation among your users
+    -->
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.GET_TOP_ACTIVITY_INFO"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"  />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.SET_DEBUG_APP"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-	<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.GET_TOP_ACTIVITY_INFO"/>
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.WAKELOCK"/>   
+    <uses-permission android:name="android.permission.SET_WALLPAPER"/>
+
+    <!-- remove location.gps feature if not using permission ACCESS_FINE_LOCATION -->
+    <uses-feature android:name="android.hardware.location.gps" />
+    <uses-feature android:name="android.hardware.touchscreen" android:required="false" />
+
     <application
-		android:name="com.youtube.playlist.app.AppController"
+		android:name="com.youtube.playlist.PlaylistApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -20,8 +41,8 @@
 		android:theme="@style/AppTheme"
 		android:resizeableActivity="true">
          <activity
-			android:name="com.youtube.playlist.YtPlaylistStarter"
-			 android:theme="@style/AppTheme.NoActionBar"
+			android:name="com.youtube.playlist.PlaylistStarter"
+			 android:theme="@style/AppTheme.Splash"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden">
             <intent-filter>
@@ -31,10 +52,9 @@
             </intent-filter>
         </activity>
 		<activity
-            android:name="com.youtube.playlist.YtPlaylistActivity"
+            android:name="com.youtube.playlist.PlaylistActivity"
 			android:theme="@style/AppTheme.NoActionBar"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateAlwaysHidden"/>
+            android:screenOrientation="portrait"/>
         <activity
             android:name="com.youtube.playlist.player.YoutubePlayerActivity"
             android:windowSoftInputMode="stateAlwaysHidden" />
@@ -43,6 +63,115 @@
             android:screenOrientation="landscape"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="Video Player"/>
+        <activity
+            android:name="com.youtube.playlist.tasks.YoutubeTasksActivity"
+            android:label="@string/app_application_youtube_activity" 
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity> 
+        <service android:name="com.youtube.playlist.services.YoutubeService" >
+            <intent-filter>
+                <action android:name="com.youtube.playlist.background.ACTION_DO_SOMETHING" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.youtube.playlist.background.ACTION_ADD_PLAYLIST" />
+            </intent-filter>
+        </service> 
+        <activity
+            android:name="com.youtube.playlist.NoConnectionActivity"
+            android:label="@string/app_application_youtube_activity" 
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity> 
+        <activity
+            android:name="com.youtube.playlist.YoutubePlaylistActivity"
+            android:label="@string/app_application_youtube_activity" 
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.youtube.playlist.PlaylistDetailsActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:parentActivityName="com.youtube.playlist.PlaylistActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+ 
+        <activity
+            android:name="com.youtube.playlist.YoutubeSettingsActivity"
+            android:label="@string/app_application_youtube_activity" 
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity> 
+        <activity
+            android:name="com.youtube.playlist.YoutubeBrowserActivity"
+            android:label="@string/app_application_youtube_activity" 
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.youtube.playlist.downloader.YoutubeThumbnailsDownloader"
+            android:label="@string/app_application_youtube_downloader_thumbnail"
+            android:screenOrientation="portrait"> 
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.youtube.playlist.downloader.YoutubeRecentThumbnails"
+            android:label="@string/title_activity_recent_thumbnails"
+            android:screenOrientation="portrait">
+        </activity>
+        <!--<receiver
+        android:name="com.youtube.playlist.downloader.DownloadFinishedReceiver"
+        android:exported="true"
+        android:process=".dlFinished">
+        <intent-filter>
+        <action android:name="android.intent.action.DOWNLOAD_COMPLETE" />
+        </intent-filter>
+        </receiver>-->
+        <activity
+            android:name="com.youtube.playlist.downloader.YoutubeHistoryDownload"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+     
+        <service android:name="com.androweb.application.youtube.service.YoutubeNotification"/>
+        <service android:name="com.androweb.application.youtube.service.YoutubeDeleteNotification"/>
+        <receiver
+            android:name="com.youtube.playlist.logger.YoutubeLogger"
+            android:enabled="true"
+            android:exported="true" />
+        
     </application>
 
 </manifest>

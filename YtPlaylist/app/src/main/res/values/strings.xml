@@ -1,12 +1,89 @@
 <resources>
     <string name="app_name">YtPlaylist</string>
+    <string name="app_update">AWeb</string>
+    <string name="app_engine_activity">EngineMe</string>
+    <string name="app_application_activity">ApplicationMe</string>
+    <string name="app_application_youtube_activity">Youtube</string>
+    <string name="app_application_youtube_downloader_mp4">Yt Downloader</string>
+    <string name="app_application_youtube_downloader_mp3">Mp3 Downloader</string>
+    <string name="app_application_youtube_downloader_thumbnail">Thumbnails Downloader</string>
+
+    <string name="app_update">Error</string>
+
+    <string name="app_superuser_activity">SuperUser</string>
+
+    <string name="app_search">Search</string>
+    <string name="api_key">02e5408e25945c53abc271e188ea9bec</string>
+
     <string name="thumbnail_image_view_desc">Youtube Video thumbnail image view</string>
     <string name="close_player_activity">Close Player activity</string>
 	<string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
-	<string name="action_settings">Settings</string>
 	
-     
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="action_sort">Sort</string>
+    <string name="action_view">View</string>
+    <string name="action_close">Close</string>
+    <string name="action_refresh">Refresh</string>
+    <string name="action_search">Search</string>
+    <string name="action_bookmark">Bookmark</string>
+    <string name="action_back">Back</string>
+    <string name="action_forward">Forward</string>
+    <string name="menu_about_title">About</string>
+    <string name="menu_privacy_policy">Privacy Policy</string>
+    <string name="about_credits">Credits</string>
+    
+    <!-- STRING FOR ZROCK CONTENT -->
+    <string name="hello_world">Hei Dunia!</string>
+    <string name="splash_logo_desc">Splash Screen Logo</string>
+    <string name="hello_mil">Hello from the Mobile Innovation Lab!</string>
+    <string name="label_action_share">Hei Dunia!</string>
+    <string name="menu_item_title">Download</string>
+
+    <string name="account_balance">Powered By</string>
+    <string name="balance_currency">+</string>
+    <string name="balance_amount">AndroWeb</string>
+    <string name="card_title_preview">Preview</string>
+    <string name="card_title_credits">Credits</string>
+
+    <string name="application_readme">
+        ## License
+        Copyright 2016 Javier Santos
+
+        Licensed under the Apache License, Version 2.0 (the "License");
+        you may not use this file except in compliance with the License.
+        You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+        Unless required by applicable law or agreed to in writing, software
+        distributed under the License is distributed on an "AS IS" BASIS,
+        WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+        See the License for the specific language governing permissions and
+        limitations under the License.
+    </string>
+
+    <string name="yt_download_started">Download Started</string>
+    <string name="yt_cant_download">Can\'t Start Download!</string>
+    <string name="yt_error">Error</string>
+    <string name="yt_error_no_yt_link">Error</string>
+
+    <string name="yt_error_while_loading_page">An error occurred while loading this page: </string>
+    <string name="yt_thread">XDA Thread</string>
+    <string name="yt_libraries">Libraries</string>
+    <string name="yt_search">Search</string>
+    <string name="yt_search_error">Search Error</string>
+    <string name="yt_nothing">Mothing</string>
+    <string name="yt_copy_log">Copy Log</string>
+    <string name="yt_save_url_pref">Remember last url</string>
+    <string name="yt_refresh">Refresh</string>
+    <string name="yt_storage_access">This app needs to have a permission to write to external storage in order to save files. (You need to click the download button again)</string>
+    <string name="yt_request_permission">Request permission</string>
+    <string name="yt_write_permission">Write permission</string>
+    
     <string name="playlist_id_key" translatable="false">playlistId</string>
     <string name="player_message">Pilih Kualitas Video Yang Akan Di Putar :</string>
     <string name="player_audio_streamming_loading">Tunggu Sebentar!</string>
@@ -34,5 +111,38 @@
     <string name="delete_confirmation">Delete Confirmation</string>
     <string name="delete_confirmation_content">Are you sure you want to delete the download from the storage ?</string>
 
+    <string name="button_text">download thumbnail</string>
+    <string name="edittext_hint">YouTube video URL</string>
+    <string name="toast_invalid_url">Invalid url! Paste a valid video URL.</string>
+    <string name="progress_dialog_message">Downloading thumbnail...</string>
+    <string name="title_activity_recent_thumbnails">Recent Thumbnails</string>
+    <string name="no_thumbnails_in_folder">No thumbnails</string>
+
+    <string name="dialog_action_share">Share thumbnail</string>
+    <string name="dialog_action_delete">Delete thumbnail</string>
+    <string name="sharedialog_title">Share thumbnail to...</string>
+
+    <string name="intentfilter_share_label">Downl. thumbnail</string>
+
+    <string name="action_open_yt_app_menu">Open YouTube App</string>
+    <string name="action_share_thumbnail_menu">Share thumbnail</string>
+    <string name="toast_yt_app_not_installed">YouTube App is not installed.</string>
+    <string name="action_developerinfo_menu">About developer</string>
+    <string name="dev_info_text">This app is developed by <b>der Android Pro</b>.\nPlease visit my YouTube channel:\nhttps://www.youtube.com/derandroidpro\n\nIf you´ve got a question send me an e-mail:\nder.android.david@gmail.com</string>
+    <string name="share">share</string>
+    <string name="delete">delete</string>
+    <string name="toast_deleteconfirmation">Thumbnail has been deleted.</string>
+    <string name="dialogclose">close</string>
+    <string name="download_fail">Download failed.</string>
+	
+	<string name="play_button">Play button</string>
+    <string name="null_time">0:00</string>
+    <string name="open_video_in_youtube">Open video in YouTube</string>
+    <string name="full_screen_button">Full screen button</string>
+    <string name="live">LIVE</string>
+	
+    <string name="connecting_text">Connecting&#8230;</string>
+    <string name="connected_text">Connection successful</string>
+    <string name="connection_error_text">Connection error</string>
 
 </resources>

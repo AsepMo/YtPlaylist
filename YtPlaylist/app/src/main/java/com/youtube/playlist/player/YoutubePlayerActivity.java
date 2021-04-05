@@ -10,17 +10,18 @@ import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
 import com.google.android.youtube.player.YouTubePlayerView;
 import com.youtube.playlist.R;
-import com.youtube.playlist.utils.Constants;
+import com.youtube.playlist.api.YoutubeApi;
 
 public class YoutubePlayerActivity extends YouTubeBaseActivity {
     private static final String TAG = YoutubePlayerActivity.class.getSimpleName();
     private String videoID;
     private YouTubePlayerView youTubePlayerView;
+    public static final String TAG_URL = "URL";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.youtube_player_activity);
+        setContentView(R.layout.activity_youtube_player);
         //get the video id
         videoID = getIntent().getStringExtra("video_id");
         youTubePlayerView = findViewById(R.id.youtube_player_view);
@@ -31,7 +32,7 @@ public class YoutubePlayerActivity extends YouTubeBaseActivity {
      * initialize the youtube player
      */
     private void initializeYoutubePlayer() {
-        youTubePlayerView.initialize(Constants.DEVELOPER_KEY, new YouTubePlayer.OnInitializedListener() {
+        youTubePlayerView.initialize(YoutubeApi.DEVELOPER_KEY, new YouTubePlayer.OnInitializedListener() {
 
             @Override
             public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer,

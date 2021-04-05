@@ -23,7 +23,7 @@ public class YoutubeLogger extends BroadcastReceiver {
    
     public static final String TAG = "YoutubeLogger";
     public static final String PACKAGE_NAME = "com.youtube.playlist";
-    public static final String CLASS_NAME = PACKAGE_NAME + ".loggers.YoutubeLogger";
+    public static final String CLASS_NAME = PACKAGE_NAME + ".logger.YoutubeLogger";
     public static final String EXTRA_MESSAGE = PACKAGE_NAME + ".extra.message";
     public static final Integer MAX_LOG_FILE_SIZE = 500000;
     public static final String LOG_FILE_NAME = "Logs.txt";
