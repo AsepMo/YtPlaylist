@@ -1,5 +1,5 @@
 package com.youtube.playlist;
- 
+
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.support.annotation.IdRes;
@@ -89,28 +89,23 @@ public class YoutubeBrowserActivity extends AppCompatActivity implements Advance
 	public static String EXTRA_URL = "url";
 	public static String urlPage;
 
-   	public static void start(final Context c, final long time)
+   	public static void start(final Context c, final String url)
 	{
-		new Handler().postDelayed(new Runnable(){
-				@Override
-				public void run()
-				{
-					Intent mApplication = new Intent(c, YoutubeBrowserActivity.class);
-					c.startActivity(mApplication);
-				}
-			}, time);
+		Intent mApplication = new Intent(c, YoutubeBrowserActivity.class);
+		mApplication.putExtra(EXTRA_URL, url);
+		c.startActivity(mApplication);
 	} 
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		// TODO: Implement this method
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_application_browser);
-	  
+
 		mToolbar = (Toolbar)findViewById(R.id.toolbar);
 		setSupportActionBar(mToolbar);
-		
+
 	    mLayout = (LinearLayout)findViewById(R.id.main_content);
 		//Views
 		refreshLayout = (SwipeRefreshLayout)findViewById(R.id.refresh_layout);
@@ -146,10 +141,11 @@ public class YoutubeBrowserActivity extends AppCompatActivity implements Advance
 		webView.setWebChromeClient(chromeClient);
 		urlPage = getIntent().getStringExtra(EXTRA_URL); 
 		// if no url is passed, close the activity
-        if (TextUtils.isEmpty(urlPage)) {
+        if (TextUtils.isEmpty(urlPage))
+		{
             finish();
         } 	
-		
+
 		webView.addHttpHeader("X-Requested-With", "");
 		webView.loadUrl(urlPage);
 
@@ -162,17 +158,21 @@ public class YoutubeBrowserActivity extends AppCompatActivity implements Advance
 				}
 			});
 	}
-		
-	
+
+
 	@Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    public boolean onCreateOptionsMenu(Menu menu)
+	{
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_youtube_browser, menu);
 
-        if (BrowserUtils.isBookmarked(this, webView.getUrl())) {
+        if (BrowserUtils.isBookmarked(this, webView.getUrl()))
+		{
             // change icon color
             BrowserUtils.tintMenuIcon(getApplicationContext(), menu.getItem(0), R.color.colorAccent);
-        } else {
+        }
+		else
+		{
             BrowserUtils.tintMenuIcon(getApplicationContext(), menu.getItem(0), android.R.color.black);
         }
         return true;
@@ -180,23 +180,30 @@ public class YoutubeBrowserActivity extends AppCompatActivity implements Advance
 
 
     @Override
-    public boolean onPrepareOptionsMenu(Menu menu) {
+    public boolean onPrepareOptionsMenu(Menu menu)
+	{
 
         // menu item 0-index is bookmark icon
 
         // enable - disable the toolbar navigation icons
-        if (!webView.canGoBack()) {
+        if (!webView.canGoBack())
+		{
             menu.getItem(1).setEnabled(false);
             menu.getItem(1).getIcon().setAlpha(130);
-        } else {
+        }
+		else
+		{
             menu.getItem(1).setEnabled(true);
             menu.getItem(1).getIcon().setAlpha(255);
         }
 
-        if (!webView.canGoForward()) {
+        if (!webView.canGoForward())
+		{
             menu.getItem(2).setEnabled(false);
             menu.getItem(2).getIcon().setAlpha(130);
-        } else {
+        }
+		else
+		{
             menu.getItem(2).setEnabled(true);
             menu.getItem(2).getIcon().setAlpha(255);
         }
@@ -206,19 +213,22 @@ public class YoutubeBrowserActivity extends AppCompatActivity implements Advance
 
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(MenuItem item)
+	{
 
-        if (item.getItemId() == android.R.id.home) {
+        if (item.getItemId() == android.R.id.home)
+		{
             finish();
         }
 
-        if (item.getItemId() == R.id.action_bookmark) {
+        if (item.getItemId() == R.id.action_bookmark)
+		{
             // bookmark / unbookmark the url
             BrowserUtils.bookmarkUrl(this, webView.getUrl());
 
             String msg = BrowserUtils.isBookmarked(this, webView.getUrl()) ?
-                    webView.getTitle() + "is Bookmarked!" :
-			    	webView.getTitle() + " removed!";
+				webView.getTitle() + "is Bookmarked!" :
+				webView.getTitle() + " removed!";
             Snackbar snackbar = Snackbar.make(mLayout, msg, Snackbar.LENGTH_LONG);
             snackbar.show();
 
@@ -227,11 +237,13 @@ public class YoutubeBrowserActivity extends AppCompatActivity implements Advance
             invalidateOptionsMenu();
         }
 
-        if (item.getItemId() == R.id.action_back) {
+        if (item.getItemId() == R.id.action_back)
+		{
             back();
         }
 
-        if (item.getItemId() == R.id.action_forward) {
+        if (item.getItemId() == R.id.action_forward)
+		{
             forward();
         }
 
@@ -239,15 +251,19 @@ public class YoutubeBrowserActivity extends AppCompatActivity implements Advance
     }
 
     // backward the browser navigation
-    private void back() {
-        if (webView.canGoBack()) {
+    private void back()
+	{
+        if (webView.canGoBack())
+		{
             webView.goBack();
         }
     }
-	
+
     // forward the browser navigation
-    private void forward() {
-        if (webView.canGoForward()) {
+    private void forward()
+	{
+        if (webView.canGoForward())
+		{
             webView.goForward();
         }
     }
@@ -428,7 +444,8 @@ public class YoutubeBrowserActivity extends AppCompatActivity implements Advance
 							.show();
 					}
 				});
-		}else if(url != null && (url.contains("youtube.com/channel/")))
+		}
+		else if (url != null && (url.contains("youtube.com/channel/")))
 		{
 			new AlertDialog.Builder(this)
 				.setMessage("Anda Ingin Mendownload Video Dari Channel Ini?")
@@ -460,7 +477,7 @@ public class YoutubeBrowserActivity extends AppCompatActivity implements Advance
 									Intent intent = new Intent("android.intent.action.VIEW", Uri.parse(stringBuilder.toString()));
 									startActivity(intent);
 									YoutubeAnalytics.setBrowserHandleDownload(stringBuilder.toString(), "");
-    
+
 								}
 							}).start();
 						dialog.dismiss();
@@ -471,7 +488,7 @@ public class YoutubeBrowserActivity extends AppCompatActivity implements Advance
 					@Override
 					public void onClick(DialogInterface dialog, int which)
 					{
-						
+
 						dialog.dismiss();
 					}
 				}).show();
@@ -559,16 +576,19 @@ public class YoutubeBrowserActivity extends AppCompatActivity implements Advance
 		// TODO: Implement this method
 		super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
 	} 
-	
+
 	@Override
 	public void onBackPressed()
 	{
 		// TODO: Implement this method
-		if (webView.canGoBack()) {
+		if (webView.canGoBack())
+		{
             webView.goBack();
-        }else{
+        }
+		else
+		{
 		    super.onBackPressed();
 		}
 	}
-	
+
 }

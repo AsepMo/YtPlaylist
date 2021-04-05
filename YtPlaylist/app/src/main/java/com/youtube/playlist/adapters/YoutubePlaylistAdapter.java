@@ -20,15 +20,24 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormatter;
+import org.joda.time.format.ISODateTimeFormat;
+
 import java.io.File;
-import java.util.HashMap;
+import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 import com.squareup.picasso.Picasso;
 import com.google.android.youtube.player.YouTubeStandalonePlayer;
 import com.androweb.engine.app.utils.AppsPackNames;
 import com.youtube.playlist.PlaylistDetailsActivity;
+import com.youtube.playlist.utils.TimeAgo;
 
 public class YoutubePlaylistAdapter extends ArrayAdapter<Playlist> 
 {
@@ -77,7 +86,19 @@ public class YoutubePlaylistAdapter extends ArrayAdapter<Playlist>
 		name.setTextColor(textColor);
 
 		TextView published = (TextView) convertView.findViewById(R.id.video_duration_label);       
-		published.setText(video.getPublished());
+		try {
+            DateTimeFormatter parser = ISODateTimeFormat.dateTimeParser();
+            DateTime dt = parser.parseDateTime(video.getPublished());
+
+            long videoSecs = (dt.getMillis())/1000;
+            long nowSecs = (new Date().getTime())/1000;
+            long secs = nowSecs - videoSecs;
+            published.setText(TimeAgo.getTimeAgo(secs));
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            published.setText("NA");
+        } 
 		convertView.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View v)

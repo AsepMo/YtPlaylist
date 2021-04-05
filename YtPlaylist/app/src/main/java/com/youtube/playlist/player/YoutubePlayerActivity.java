@@ -16,14 +16,14 @@ public class YoutubePlayerActivity extends YouTubeBaseActivity {
     private static final String TAG = YoutubePlayerActivity.class.getSimpleName();
     private String videoID;
     private YouTubePlayerView youTubePlayerView;
-    public static final String TAG_URL = "URL";
+    public static final String TAG_URL = "video_id";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_youtube_player);
         //get the video id
-        videoID = getIntent().getStringExtra("video_id");
+        videoID = getIntent().getStringExtra(TAG_URL);
         youTubePlayerView = findViewById(R.id.youtube_player_view);
         initializeYoutubePlayer();
     }

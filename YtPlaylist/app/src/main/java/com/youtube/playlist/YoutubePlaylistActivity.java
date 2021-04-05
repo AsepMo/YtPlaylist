@@ -107,8 +107,7 @@ public class YoutubePlaylistActivity extends AppCompatActivity
 				showFragment(youtube);
 				break;
 			case "browser":
-				Fragment browser = YoutubeWebView.createFor(requestUrl);
-				showFragment(browser);
+				YoutubeBrowserActivity.start(this, requestUrl);
 				break;
 			case "user":
 				Intent user = YouTubeIntents.createUserIntent(this, requestUrl);
